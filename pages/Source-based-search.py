@@ -9,7 +9,7 @@ import requests
 from newspaper import Article
 import streamlit as st
 
-from transformers import pipeline,
+from transformers import pipeline
 
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 sentiment = pipeline("text-classification",model='nlptown/bert-base-multilingual-uncased-sentiment',top_k=None)

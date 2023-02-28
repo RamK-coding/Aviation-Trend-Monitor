@@ -4,3 +4,4 @@ BeautifulSoup-dev
 pandas-dev
 geopy-dev
 numpy-dev
+datetime-dev

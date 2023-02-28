@@ -4,12 +4,14 @@ from bs4 import BeautifulSoup
 # from the websites.
 
 import pandas as pd
-from datetime import timedelta
+from datetime import datetime, timedelta
 import requests
 from newspaper import Article
 import streamlit as st
+import numpy as np
+import plotly.express as px
 
-from transformers import pipeline
+from transformers import pipeline,AutoTokenizer
 
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 sentiment = pipeline("text-classification",model='nlptown/bert-base-multilingual-uncased-sentiment',top_k=None)

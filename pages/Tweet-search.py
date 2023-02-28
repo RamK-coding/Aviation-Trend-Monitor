@@ -32,7 +32,6 @@ if option != "none":
 
     for n in range(0, len(df)):
         api = f"https://publish.twitter.com/oembed?url=https://twitter.com/edent/status/{df.loc[n]['id']}"
-        #components.iframe(api, height=900, scrolling=True)
         res = requests.get(api)
         res = res.json()["html"]
         components.html(res, height=500, scrolling=True)

@@ -5,7 +5,6 @@ import numpy as np
 from datetime import date, timedelta
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 from transformers import pipeline
 
@@ -47,7 +46,7 @@ with st.sidebar.form("Parameters"):
 
 if submitted:
     st.session_state.search_state = True
-    secret = st.secrets["key"] #"e98c25fea2d442479ea7de0938b44179"
+    secret = st.secrets["key"]
     url = 'https://newsapi.org/v2/everything?'
     parameters = {
                 'q': dict2[option2],  # query phrase

@@ -4,14 +4,12 @@ from bs4 import BeautifulSoup
 # from the websites.
 
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import timedelta
 import requests
 from newspaper import Article
 import streamlit as st
-import numpy as np
-import plotly.express as px
 
-from transformers import pipeline,AutoTokenizer
+from transformers import pipeline,
 
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 sentiment = pipeline("text-classification",model='nlptown/bert-base-multilingual-uncased-sentiment',top_k=None)
@@ -20,8 +18,6 @@ sentiment = pipeline("text-classification",model='nlptown/bert-base-multilingual
 
 # We will use the requests module to get the HTML code from the page and then navigate through it with the
 # BeautifulSoup package.
-
-import random, string
 
 r1 = requests.get("https://www.iata.org/en/pressroom/")
 r2 = requests.get("https://www.transportenvironment.org/discover/")
@@ -57,7 +53,7 @@ news_dates4 = soup4.find_all("div", id="NewsDate")
 news5 = soup5.find_all("a", rel="bookmark")
 news_links5 = soup5.find_all("div", class_="button_primary")
 news_dates5 = soup5.find_all("div", class_="date")
-#print(news_dates4)
+
 
 titles = []
 links = []
@@ -119,12 +115,6 @@ for n in range(0, len(news_dates5)):
     date_n = news_dates5[n].get_text()
     dates.append(date_n)
 source_id(len(news4),"sesarju.eu")
-
-#for n in range(0, len(titles)):
-#    print(titles[n])
-#    print(links[n])
-#    print(sources[n])
-#    print("\n")
 
 df = pd.DataFrame()
 df["Source"] = pd.Series(sources)

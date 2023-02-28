@@ -50,12 +50,10 @@ if submitted:
     url = 'https://newsapi.org/v2/everything?'
     parameters = {
                 'q': dict2[option2],  # query phrase
-                #'pageSize': 20,  # maximum is 100
                 'sortBy': dict4[option4],
                 'from': date.today() - timedelta(days=dict5[option5]),
                 'language': 'en',
                 'searchIn': option3,
-                #'domains': 'centreforaviation.com,technologyreview.com,engadget.com,electrek.co,cnn.com,simpleflying.com',
                 'excludeDomains': "com.np,euractiv.com,khabarhub.com,rsc.org,yahoo.com,marketscreener.com,seekingalpha.com,moneycontrol.com,fool.com,prnewswire.co.uk,yankodesign.com,Gizmodo.jp,globalsecurity.org,atlantamagazine.com",
                 'apiKey': secret  # your own API key
                 }

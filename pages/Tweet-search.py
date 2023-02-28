@@ -9,7 +9,6 @@ st.set_page_config(layout="wide", initial_sidebar_state = 'expanded')
 st.header("Latest tweets on relevant topics")
 
 bearer_token = os.environ.get("Token")
-
 option = st.sidebar.selectbox("Select search term", ("none", "sustainable aviation fuel", "hydrogen aviation"))
 
 def get_data(url,bt):

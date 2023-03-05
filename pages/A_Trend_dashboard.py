@@ -27,7 +27,7 @@ dict = {"Sustainable Aviation Fuels": "sustainable aviation fuel",
         "eVTOL" : "eVTOL"
        }
 
-st.subheader(":red[Google search trends]")
+st.subheader(f":red[Google search trends for {choice}]")
 pytrends = TrendReq(hl='en-US', tz=0, timeout=(3.05, 27)) #tz=0 means timezone is UCT
 pytrends.build_payload([dict[choice]], cat=0, timeframe='today 12-m')
 
@@ -100,7 +100,7 @@ with fig3:
         fig.update_xaxes(visible=False, showticklabels=False)
         st.plotly_chart(fig, use_container_width=True)
 
-st.subheader(":red[News media trends]")
+st.subheader(f":red[News media trends for {choice}]")
 fig = px.bar(count, title='Number of news articles by date (past 28 days)')
 st.plotly_chart(fig, use_container_width=True)
 
@@ -109,4 +109,23 @@ fig = px.bar(df_senti, x=df["Title"], y=["Negative", "Neutral", "Positive"],titl
 fig.update_xaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig, use_container_width=True, theme="streamlit")
 
-st.subheader(":red[Twitter search trends]")
+st.subheader(f":red[Wikipedia edit history for {choice}]")
+dict3 = {"Sustainable Aviation Fuels": "Aviation_biofuel",
+         "Hydrogen Aviation": "Hydrogen-powered_aircraft",
+         "Electric aviation": "Electric_aircraft",
+         "eVTOL" : "EVTOL"
+        }
+
+r = requests.get(f"https://xtools.wmflabs.org/articleinfo/en.wikipedia.org/{dict3[choice]}#month-counts",headers={'User-Agent': 'Mozilla/5.0'})
+content = pd.read_html(r.content)
+df_wiki = pd.DataFrame(content[8])
+df_wiki = df_wiki[["Month","Edits","Minor edits"]]
+df_wiki["Major edits"] = df_wiki["Edits"] - df_wiki["Minor edits"]
+df_wiki.set_index("Month", inplace=True)
+df_wiki = df_wiki.tail(12)
+print(df_wiki)
+
+fig = px.bar(df_wiki, x=df_wiki.index, y=[df_wiki["Major edits"], df_wiki["Minor edits"]],title=f'Edit history of the wikipedia page (last 12 months)')
+st.plotly_chart(fig, use_container_width=True)
+
+st.subheader(f":red[Twitter search trends for {choice}]")

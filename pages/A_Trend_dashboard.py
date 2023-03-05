@@ -109,3 +109,4 @@ fig = px.bar(df_senti, x=df["Title"], y=["Negative", "Neutral", "Positive"],titl
 fig.update_xaxes(visible=False, showticklabels=False)
 st.plotly_chart(fig, use_container_width=True, theme="streamlit")
 
+st.subheader(":red[Twitter search trends]")
